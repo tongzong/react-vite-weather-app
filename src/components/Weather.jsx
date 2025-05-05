@@ -37,14 +37,14 @@ const Weather = () => {
       const response = await fetch(url);
       const data = await response.json();
 
-      if(!response.ok){
-        if (data && data.error && data.error.message){
-            alert(data.error.message);
+      if (!response.ok) {
+        if (data && data.error && data.error.message) {
+          alert(data.error.message);
         } else {
-            alert("Error fetching data");
-            console.error("API Error Response:", data)
+          alert("Error fetching data");
+          console.error("API Error Response:", data);
         }
-        
+
         return;
       }
 
@@ -69,7 +69,7 @@ const Weather = () => {
     }
   };
   useEffect(() => {
-    search("London");
+    search("");
   }, []);
   return (
     <div className="weather">
@@ -81,8 +81,8 @@ const Weather = () => {
           onClick={() => search(inputRef.current.value)}
         />
       </div>
-      {weatherData? <>
-        <img src={weatherData.icon || sun_icon} alt="" className="weather_icon" />
+
+      <img src={weatherData.icon || sun_icon} alt="" className="weather_icon" />
       <p className="temprature">{weatherData.temprature} °C</p>
       <p className="location">{weatherData.location}</p>
       <div className="weather-data">
@@ -101,10 +101,6 @@ const Weather = () => {
           </div>
         </div>
       </div>
-      </>:<> </>};
-      
-      
-      
     </div>
   );
 };
